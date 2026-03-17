@@ -40,6 +40,7 @@ app.use('/api/training', trainingRouter);
 app.use('/api/risk', riskRouter);
 app.use('/api/notifications', notificationsRouter);
 
+app.get('/', (req, res) => res.json({ service: 'DisasterSync API', status: 'ok' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 // WebSocket Server
