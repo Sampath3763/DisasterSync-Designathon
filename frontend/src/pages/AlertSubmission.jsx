@@ -74,7 +74,7 @@ export default function AlertSubmission() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-gray-900 border border-gray-800 rounded-xl p-1 w-fit">
+      <div className="flex gap-1 bg-gray-900 border border-gray-800 rounded-xl p-1 overflow-x-auto">
         {[['submit', '📤 Submit Alert'], ['queue', `🔍 Review Queue (${pending.length})`], ['all', '📋 All Alerts']].map(([v, l]) => (
           <button key={v} onClick={() => setTab(v)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === v ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'}`}>{l}</button>
         ))}
@@ -86,7 +86,7 @@ export default function AlertSubmission() {
           {success && <div className="bg-green-900/30 border border-green-800 text-green-300 text-sm p-3 rounded-lg mb-4">✅ {success}</div>}
           {error && <div className="bg-red-900/30 border border-red-800 text-red-300 text-sm p-3 rounded-lg mb-4">❌ {error}</div>}
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs text-gray-400 mb-1 block">Disaster Type *</label>
                 <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="select w-full">
@@ -100,7 +100,7 @@ export default function AlertSubmission() {
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs text-gray-400 mb-1 block">Latitude *</label>
                 <input type="number" step="any" value={form.lat} onChange={e => setForm(f => ({ ...f, lat: e.target.value }))} className="input w-full" placeholder="e.g. 28.6139" required />

@@ -120,12 +120,14 @@ export default function Dashboard() {
       </div>
 
       {/* Map */}
-      <DisasterMap filters={mapFilters} selectedAlert={selectedAlert} onAlertClick={setSelectedAlert} />
+      <div className="h-[300px] sm:h-[400px] md:h-[500px]">
+        <DisasterMap filters={mapFilters} selectedAlert={selectedAlert} onAlertClick={setSelectedAlert} />
+      </div>
 
       {/* Bottom grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Alerts list */}
-        <div className="lg:col-span-2 card p-4">
+        <div className="md:col-span-2 card p-4">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold text-sm">Disaster Alerts</h2>
             <span className="text-xs text-gray-500">{alerts.length} total</span>

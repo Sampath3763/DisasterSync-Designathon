@@ -80,22 +80,22 @@ export default function DisasterMap({ filters = {}, selectedAlert, onAlertClick 
   });
 
   return (
-    <div className="relative rounded-xl overflow-hidden border border-gray-800" style={{ height: '500px' }}>
+    <div className="h-full relative rounded-xl overflow-hidden border border-gray-800">
       {/* Layer toggles */}
-      <div className="absolute top-3 left-3 z-[1000] flex flex-col gap-1.5">
+      <div className="absolute top-2 left-2 lg:top-3 lg:left-3 z-[1000] flex flex-col gap-1">
         {[
           { label: 'Risk Zones', state: showRiskZones, set: setShowRiskZones, color: 'bg-red-600' },
           { label: 'Sensors', state: showSensors, set: setShowSensors, color: 'bg-yellow-600' },
           { label: 'Resources', state: showResources, set: setShowResources, color: 'bg-blue-600' },
         ].map(({ label, state, set, color }) => (
-          <button key={label} onClick={() => set(s => !s)} className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-all ${state ? `${color} border-transparent text-white` : 'bg-gray-900/80 border-gray-700 text-gray-400'}`}>
-            <div className="w-1.5 h-1.5 rounded-full bg-white/70"></div>{label}
+          <button key={label} onClick={() => set(s => !s)} className={`flex items-center gap-1 text-[10px] lg:text-xs px-2 py-1 lg:px-3 lg:py-1.5 rounded-full border transition-all ${state ? `${color} border-transparent text-white` : 'bg-gray-900/80 border-gray-700 text-gray-400'}`}>
+            <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 rounded-full bg-white/70"></div>{label}
           </button>
         ))}
       </div>
 
       {/* Legend */}
-      <div className="absolute bottom-8 right-3 z-[1000] bg-gray-900/90 border border-gray-700 rounded-xl p-3 text-xs space-y-1.5">
+      <div className="absolute bottom-2 right-2 lg:bottom-8 lg:right-3 z-[1000] bg-gray-900/90 border border-gray-700 rounded-lg lg:rounded-xl px-2 py-1.5 lg:p-3 text-[10px] lg:text-xs space-y-1">
         <div className="font-semibold text-gray-300 mb-2">Severity</div>
         {Object.entries(SEVERITY_COLORS).map(([sev, col]) => (
           <div key={sev} className="flex items-center gap-2">

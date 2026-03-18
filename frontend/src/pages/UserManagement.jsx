@@ -287,7 +287,7 @@ export default function UserManagement() {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {[
           { label: 'Total Users', value: stats.total, color: '#f1f5f9' },
           { label: 'Admins',      value: stats.admin,   color: ROLE_META.admin.color },
@@ -322,8 +322,61 @@ export default function UserManagement() {
         </select>
       </div>
 
-      {/* User table */}
-      <div className="card overflow-hidden">
+      {/* Mobile Card View */}
+      <div className="lg:hidden space-y-3">
+        {loading ? (
+          <div className="card p-8 text-center text-gray-500">Loading users…</div>
+        ) : filtered.length === 0 ? (
+          <div className="card p-8 text-center text-gray-500">No users found</div>
+        ) : (
+          filtered.map(u => (
+            <div key={u.id} className="card p-4">
+              <div className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-800">
+                <Avatar name={u.name} role={u.role} />
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-white text-sm flex items-center gap-2">
+                    {u.name}
+                    {u.id === me?.id && <span className="text-[10px] text-green-400 font-semibold">● YOU</span>}
+                  </div>
+                  <Badge role={u.role} />
+                  {u.team && (
+                    <div className="text-[11px] text-slate-500 mt-1">
+                      🏷 {u.team.charAt(0).toUpperCase() + u.team.slice(1)} Team
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="space-y-2 text-sm mb-4">
+                <div className="flex justify-between items-start">
+                  <span className="text-gray-500 text-xs">Credentials</span>
+                  <div className="text-right">
+                    <CredsCell username={u.username} password={u.password || '(hidden)'} />
+                  </div>
+                </div>
+                {u.email && (
+                  <div className="flex justify-between pt-2 border-t border-gray-800">
+                    <span className="text-gray-500 text-xs">Email</span>
+                    <span className="text-gray-300 text-xs">{u.email}</span>
+                  </div>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => setModal(u)} className="flex-1 px-3 py-2 rounded-lg bg-blue-900 border border-blue-800 text-blue-300 text-xs font-semibold hover:bg-blue-800 transition-colors">
+                  ✏️ Edit
+                </button>
+                {u.username !== 'admin' && (
+                  <button onClick={() => setDelConfirm(u)} className="flex-1 px-3 py-2 rounded-lg bg-red-950 border border-red-900 text-red-300 text-xs font-semibold hover:bg-red-900 transition-colors">
+                    🗑 Delete
+                  </button>
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* User table - Desktop */}
+      <div className="hidden lg:block card overflow-hidden">
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
             <thead>
