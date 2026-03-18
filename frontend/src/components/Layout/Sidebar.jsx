@@ -15,14 +15,29 @@ const ADMIN_ITEMS = [
   { to: '/users', icon: '👥', label: 'User Management' },
 ];
 
-export default function Sidebar({ open }) {
+export default function Sidebar({ open, onClose }) {
   const { user } = useAuth();
   const location = useLocation();
 
   return (
-    <aside className={`${open ? 'w-64' : 'w-0 overflow-hidden'} transition-all duration-300 bg-gray-900 border-r border-gray-800 flex flex-col`}>
+    <>
+      {/* Mobile backdrop */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`
+        fixed lg:relative inset-y-0 left-0 z-[2000]
+        w-64 transform transition-transform duration-300
+        ${open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        bg-gray-900 border-r border-gray-800 flex flex-col shadow-2xl
+      `}>
       {/* Brand */}
-      <div className="px-6 py-5 border-b border-gray-800">
+      <div className="px-6 py-5 border-b border-gray-800 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">DS</div>
           <div>
@@ -30,6 +45,16 @@ export default function Sidebar({ open }) {
             <div className="text-gray-500 text-xs">Response Platform</div>
           </div>
         </div>
+        {/* Mobile close button */}
+        <button
+          onClick={onClose}
+          className="lg:hidden text-gray-400 hover:text-white p-2 -mr-2"
+          aria-label="Close menu"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       {/* User info */}
@@ -94,5 +119,6 @@ export default function Sidebar({ open }) {
         </div>
       </div>
     </aside>
+    </>
   );
 }

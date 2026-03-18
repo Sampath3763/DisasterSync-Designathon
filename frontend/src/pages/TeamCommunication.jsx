@@ -32,6 +32,7 @@ export default function TeamCommunication() {
   const [form, setForm] = useState({ toTeam: '', content: '', type: 'message', priority: 'normal' });
   const [sending, setSending] = useState(false);
   const [teamFilter, setTeamFilter] = useState('all');
+  const [mobileTab, setMobileTab] = useState('messages');
   const messagesEndRef = useRef(null);
 
   const fetchData = useCallback(async () => {
@@ -92,9 +93,39 @@ export default function TeamCommunication() {
         <p className="text-gray-500 text-sm">Coordinate between fire, medical, flood, and earthquake response teams</p>
       </div>
 
+      {/* Mobile Tab Navigation */}
+      <div className="lg:hidden">
+        <div className="flex gap-2 p-1 bg-gray-900 border border-gray-800 rounded-xl overflow-x-auto">
+          <button
+            onClick={() => setMobileTab('teams')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              mobileTab === 'teams' ? 'bg-blue-600 text-white' : 'text-gray-400'
+            }`}
+          >
+            👥 Teams
+          </button>
+          <button
+            onClick={() => setMobileTab('messages')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              mobileTab === 'messages' ? 'bg-blue-600 text-white' : 'text-gray-400'
+            }`}
+          >
+            💬 Messages
+          </button>
+          <button
+            onClick={() => setMobileTab('coordination')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              mobileTab === 'coordination' ? 'bg-blue-600 text-white' : 'text-gray-400'
+            }`}
+          >
+            📊 Coordination
+          </button>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4" style={{ minHeight: '75vh' }}>
         {/* Left: Team Status */}
-        <div className="lg:col-span-1 space-y-3">
+        <div className={`lg:col-span-1 space-y-3 ${mobileTab !== 'teams' ? 'hidden lg:block' : ''}`}>
           <div className="card p-4">
             <h2 className="font-semibold text-sm mb-3">Team Status</h2>
             <div className="space-y-2">
@@ -147,7 +178,7 @@ export default function TeamCommunication() {
         </div>
 
         {/* Center: Message Thread */}
-        <div className="lg:col-span-2 card flex flex-col overflow-hidden" style={{ maxHeight: '75vh' }}>
+        <div className={`lg:col-span-2 card flex flex-col overflow-hidden ${mobileTab !== 'messages' ? 'hidden lg:flex' : ''}`} style={{ maxHeight: '75vh' }}>
           <div className="flex items-center justify-between p-4 border-b border-gray-800">
             <div className="flex items-center gap-2">
               <h2 className="font-semibold text-sm">Messages</h2>
@@ -240,7 +271,7 @@ export default function TeamCommunication() {
         </div>
 
         {/* Right: Coordination Panel */}
-        <div className="lg:col-span-1 space-y-3">
+        <div className={`lg:col-span-1 space-y-3 ${mobileTab !== 'coordination' ? 'hidden lg:block' : ''}`}>
           <div className="card p-4">
             <h2 className="font-semibold text-sm mb-3">Coordination Panel</h2>
             <div className="space-y-3">

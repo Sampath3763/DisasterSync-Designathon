@@ -33,7 +33,7 @@ export default function NotificationPanel({ onClose }) {
   }, [onClose]);
 
   return (
-    <div ref={panelRef} className="absolute right-0 top-10 w-80 bg-gray-900 border border-gray-700 rounded-xl shadow-2xl z-50 overflow-hidden">
+    <div ref={panelRef} className="fixed sm:absolute left-4 right-4 sm:left-auto sm:right-0 top-10 sm:w-80 max-h-[calc(100vh-5rem)] bg-gray-900 border border-gray-700 rounded-xl shadow-2xl z-50 overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-sm">Notifications</span>
@@ -43,7 +43,7 @@ export default function NotificationPanel({ onClose }) {
           <button onClick={markAllRead} className="text-xs text-blue-400 hover:text-blue-300">Mark all read</button>
         )}
       </div>
-      <div className="max-h-80 overflow-y-auto">
+      <div className="max-h-[60vh] sm:max-h-80 overflow-y-auto">
         {notifications.length === 0 ? (
           <div className="py-8 text-center text-gray-500 text-sm">No notifications</div>
         ) : (

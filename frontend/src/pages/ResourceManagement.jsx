@@ -83,7 +83,7 @@ export default function ResourceManagement() {
       {tab === 'resources' && (
         <div className="card p-4">
           <div className="flex items-center justify-between mb-4"><h2 className="font-semibold">Resources ({resources.length})</h2></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {resources.map(res => (
               <div key={res.id} className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
                 <div className="flex items-start justify-between mb-2">
