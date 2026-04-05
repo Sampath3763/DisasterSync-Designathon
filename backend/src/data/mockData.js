@@ -10,38 +10,7 @@ export const users = [
 ];
 
 // DISASTER ALERTS
-export let alerts = [
-  {
-    id: 'a1', type: 'flood', location: { lat: 28.6139, lng: 77.2090, address: 'New Delhi, India' },
-    severity: 'high', description: 'Flash flooding in residential areas. Multiple families trapped on rooftops.',
-    status: 'active', submittedBy: 'u4', verifiedBy: 'u2', timestamp: new Date(Date.now() - 3600000).toISOString(),
-    riskScore: 78, photoUrl: null, casualties: 12, affectedArea: '5 km²', resourcesAssigned: ['r1', 'r3'],
-  },
-  {
-    id: 'a2', type: 'earthquake', location: { lat: 19.0760, lng: 72.8777, address: 'Mumbai, India' },
-    severity: 'critical', description: 'Magnitude 6.2 earthquake. Several buildings collapsed in coastal area.',
-    status: 'active', submittedBy: 'u3', verifiedBy: 'u2', timestamp: new Date(Date.now() - 7200000).toISOString(),
-    riskScore: 92, photoUrl: null, casualties: 45, affectedArea: '12 km²', resourcesAssigned: ['r2', 'r4', 'r5'],
-  },
-  {
-    id: 'a3', type: 'wildfire', location: { lat: 12.9716, lng: 77.5946, address: 'Bangalore, India' },
-    severity: 'medium', description: 'Forest fire spreading towards residential area. Wind speed increasing.',
-    status: 'verified', submittedBy: 'u4', verifiedBy: 'u2', timestamp: new Date(Date.now() - 1800000).toISOString(),
-    riskScore: 55, photoUrl: null, casualties: 0, affectedArea: '8 km²', resourcesAssigned: ['r6'],
-  },
-  {
-    id: 'a4', type: 'gas_leak', location: { lat: 22.5726, lng: 88.3639, address: 'Kolkata, India' },
-    severity: 'high', description: 'Industrial gas leak reported. Evacuation of 500m radius underway.',
-    status: 'pending', submittedBy: 'u4', verifiedBy: null, timestamp: new Date(Date.now() - 600000).toISOString(),
-    riskScore: 68, photoUrl: null, casualties: 3, affectedArea: '2 km²', resourcesAssigned: [],
-  },
-  {
-    id: 'a5', type: 'flood', location: { lat: 17.3850, lng: 78.4867, address: 'Hyderabad, India' },
-    severity: 'low', description: 'Minor flooding in low-lying areas. Road connectivity affected.',
-    status: 'resolved', submittedBy: 'u3', verifiedBy: 'u2', timestamp: new Date(Date.now() - 86400000).toISOString(),
-    riskScore: 25, photoUrl: null, casualties: 0, affectedArea: '1 km²', resourcesAssigned: [],
-  },
-];
+export let alerts = [];
 
 // SENSORS
 export let sensorData = [
