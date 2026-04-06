@@ -42,12 +42,6 @@ export default function LoginPage() {
     if (!result.success) setError(result.error || 'Invalid credentials');
   };
 
-  const quickLogin = async (u) => {
-    setError('');
-    const result = await login(u.username, u.password);
-    if (!result.success) setError(result.error || 'Login failed');
-  };
-
   return (
     <div className="flex flex-col lg:flex-row min-h-screen overflow-hidden bg-[#f0ebe3]">
 
@@ -150,36 +144,6 @@ export default function LoginPage() {
                 {loading ? 'Authenticating…' : 'Access Command Center'}
               </button>
             </form>
-
-            {/* Divider */}
-            <div className="flex items-center gap-3 my-6">
-              <div className="flex-1 h-px bg-gray-300" />
-              <span className="text-[11px] text-slate-400 font-semibold tracking-wider">QUICK ACCESS</span>
-              <div className="flex-1 h-px bg-gray-300" />
-            </div>
-
-            {/* Quick-access grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {DEMO_USERS.map(u => (
-                <button
-                  key={u.username}
-                  onClick={() => quickLogin(u)}
-                  disabled={loading}
-                  className="flex items-center gap-3 bg-white border-[1.5px] border-gray-300 rounded-xl px-4 py-3 cursor-pointer text-left transition-all hover:border-slate-400 hover:shadow-md disabled:cursor-not-allowed"
-                >
-                  <div
-                    className="w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center text-white text-sm font-bold"
-                    style={{ background: u.color }}
-                  >
-                    {u.initial}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900 leading-tight">{u.role}</div>
-                    <div className="text-xs text-slate-400">{u.username}</div>
-                  </div>
-                </button>
-              ))}
-            </div>
 
           </div>
         </div>
